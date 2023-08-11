@@ -38,9 +38,22 @@ const getAllUsers = async (req: Request, res: Response) => {
     res.send(err);
   }
 };
+const getSingleUser = async (req: Request, res: Response) => {
+  try {
+    const result = await userService.getSingleUser(parseInt(req.params.id));
+    res.send({
+      success: true,
+      message: "user retrieved successfully",
+      data: result,
+    });
+  } catch (err) {
+    res.send(err);
+  }
+};
 
 export const userController = {
   insertIntoDB,
   insertOrUpdateProfile,
   getAllUsers,
+  getSingleUser,
 };
