@@ -73,8 +73,22 @@ const getSinglePost = async (id: number): Promise<Post[]> => {
   return result;
 };
 
+const updatePost = async (
+  id: number,
+  payload: Partial<Post>
+): Promise<Post> => {
+  const result = await prisma.post.update({
+    where: {
+      id: id,
+    },
+    data: payload,
+  });
+  return result;
+};
+
 export const PostService = {
   insertIntoDB,
   getAllPost,
   getSinglePost,
+  updatePost,
 };
