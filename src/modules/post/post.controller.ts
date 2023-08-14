@@ -15,8 +15,9 @@ const insertIntoDB = async (req: Request, res: Response) => {
   }
 };
 const getAllPost = async (req: Request, res: Response) => {
+  const options = req.query;
   try {
-    const result = await PostService.getAllPost();
+    const result = await PostService.getAllPost(options);
 
     res.send({
       success: true,
