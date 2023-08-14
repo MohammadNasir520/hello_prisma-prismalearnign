@@ -8,4 +8,4 @@ router.post("/profile", userController.insertOrUpdateProfile);
 router.get("/", userController.getAllUsers);
 router.get("/:id", userController.getSingleUser);
 
-export const userRoutes = router;
+export const UserRoutes = router;
