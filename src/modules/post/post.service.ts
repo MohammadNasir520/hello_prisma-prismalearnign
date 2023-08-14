@@ -11,7 +11,7 @@ const insertIntoDB = async (data: Post): Promise<Post> => {
   });
   return result;
 };
-const getAllPost = async (options: any): Promise<Post[]> => {
+const getAllPost = async (options: any) => {
   const { sortBy, sortOrder, searchTerm, page, limit } = options;
 
   const skip = parseInt(page) * parseInt(limit) - parseInt(limit);
@@ -52,7 +52,11 @@ const getAllPost = async (options: any): Promise<Post[]> => {
       ],
     },
   });
-  return result;
+  const total = await prisma.post.count();
+  return {
+    data: result,
+    total: total,
+  };
 };
 const getSinglePost = async (id: number): Promise<Post[]> => {
   const result = await prisma.post.findMany({
