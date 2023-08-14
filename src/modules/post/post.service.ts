@@ -20,8 +20,21 @@ const getAllPost = async (): Promise<Post[]> => {
   });
   return result;
 };
+const getSinglePost = async (id: number): Promise<Post[]> => {
+  const result = await prisma.post.findMany({
+    where: {
+      id: id,
+    },
+    include: {
+      author: true,
+      category: true,
+    },
+  });
+  return result;
+};
 
 export const PostService = {
   insertIntoDB,
   getAllPost,
+  getSinglePost,
 };
